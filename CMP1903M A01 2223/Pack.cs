@@ -48,7 +48,12 @@ namespace CMP1903M_A01_2223
         public Card dealCard()
         {
             //Deals one card
+            if (pack.Count == 0)
+            {
+                throw new EmptyPackException("pack is empty");
+            }
             Card card = pack[0];
+            Console.WriteLine(card);
             pack.RemoveAt(0);
             return card;
 
@@ -56,7 +61,23 @@ namespace CMP1903M_A01_2223
         public List<Card> dealCard(int amount)
         {
             //Deals the number of cards specified by 'amount'
-            return new List<Card>();
+            if (pack.Count == 0)
+            {
+                throw new EmptyPackException("pack is empty");
+            }
+            else if (amount < 0)
+            {
+                throw new ArgumentOutOfRangeException("cannot deal negative amount of cards");
+            } else if (amount == 0)
+            {
+                throw new ArgumentOutOfRangeException("cannot deal zero cards");
+            } else if (amount > pack.Count)
+            {
+                throw new ArgumentOutOfRangeException("cannot deal more cards than in the pack");
+            }
+            List<Card> cards = pack.GetRange(0, amount);
+            pack.RemoveRange(0, amount);
+            return cards;
         }
     }
 }
