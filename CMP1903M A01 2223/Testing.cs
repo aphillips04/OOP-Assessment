@@ -57,6 +57,7 @@ namespace CMP1903M_A01_2223
             {
                 throw new FailedTestException("dealt card not removed from pack");
             }
+            Console.WriteLine("Card dealt successfully");
         }
         
         public static void DealCardAmount()

@@ -48,7 +48,9 @@ namespace CMP1903M_A01_2223
         public Card dealCard()
         {
             //Deals one card
-            return new Card(1, 1);
+            Card card = pack[0];
+            pack.RemoveAt(0);
+            return card;
 
         }
         public List<Card> dealCard(int amount)
