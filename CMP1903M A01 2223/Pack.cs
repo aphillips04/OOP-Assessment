@@ -8,17 +8,23 @@ namespace CMP1903M_A01_2223
 {
     class Pack
     {
-        public List<Card> pack;
+        private List<Card> _pack;
+
+        public List<Card> pack
+        {
+            get { return _pack; }
+            set {  }
+        }
 
         public Pack()
         {
-            pack = new List<Card>();
+            _pack = new List<Card>();
             int v, s;
             for (s = 1; s <= 4; s++)
             {
                 for (v = 1; v <= 13; v++)
                 {
-                    pack.Add(new Card(v, s));
+                    _pack.Add(new Card(v, s));
                 }
             }
         }
@@ -48,20 +54,20 @@ namespace CMP1903M_A01_2223
         public Card dealCard()
         {
             //Deals one card
-            if (pack.Count == 0)
+            if (_pack.Count == 0)
             {
                 throw new EmptyPackException("pack is empty");
             }
-            Card card = pack[0];
+            Card card = _pack[0];
             Console.WriteLine(card);
-            pack.RemoveAt(0);
+            _pack.RemoveAt(0);
             return card;
 
         }
         public List<Card> dealCard(int amount)
         {
             //Deals the number of cards specified by 'amount'
-            if (pack.Count == 0)
+            if (_pack.Count == 0)
             {
                 throw new EmptyPackException("pack is empty");
             }
@@ -71,12 +77,12 @@ namespace CMP1903M_A01_2223
             } else if (amount == 0)
             {
                 throw new ArgumentOutOfRangeException("cannot deal zero cards");
-            } else if (amount > pack.Count)
+            } else if (amount > _pack.Count)
             {
                 throw new ArgumentOutOfRangeException("cannot deal more cards than in the pack");
             }
-            List<Card> cards = pack.GetRange(0, amount);
-            pack.RemoveRange(0, amount);
+            List<Card> cards = _pack.GetRange(0, amount);
+            _pack.RemoveRange(0, amount);
             return cards;
         }
     }
