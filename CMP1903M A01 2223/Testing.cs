@@ -55,11 +55,15 @@ namespace CMP1903M_A01_2223
             {
                 before = pack.pack;
                 pack.shuffleCardPack(i);
-                if (pack.pack != pack.pack)
+                if (pack.pack != before && i != 3)
                 {
                     continue;
-                };
-                throw new FailedTestException($"pack is the same after being shuffled. shuffle method: {i}");
+                }
+                else if (i == 3 && pack.pack == before)
+                {
+                    continue;
+                }
+                throw new FailedTestException($"even pack is the same after being shuffled. shuffle method: {i}");
             }
 
             // Odd pack size
@@ -68,11 +72,15 @@ namespace CMP1903M_A01_2223
             {
                 before = pack.pack;
                 pack.shuffleCardPack(i);
-                if (pack.pack != pack.pack)
+                if (pack.pack != before && i != 3)
                 {
                     continue;
-                };
-                throw new FailedTestException($"pack is the same after being shuffled. shuffle method: {i}");
+                }
+                else if (i == 3 && pack.pack == before)
+                {
+                    continue;
+                }
+                throw new FailedTestException($"odd pack is the same after being shuffled. shuffle method: {i}");
             }
 
             try

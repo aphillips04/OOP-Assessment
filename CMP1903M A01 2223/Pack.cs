@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,6 +36,19 @@ namespace CMP1903M_A01_2223
             if (typeOfShuffle == 1)
             {
                 // Do Fisher-Yates shuffle
+                List<Card> shuffled = new List<Card>(pack);
+                int i, j;
+                Card tmp;
+                Random rng = new Random();
+                for (i = 0; i < shuffled.Count - 1; i++)
+                {
+                    j = rng.Next(i, shuffled.Count);
+                    tmp = shuffled[i];
+                    shuffled[i] = shuffled[j];
+                    shuffled[j] = tmp;
+                }
+                shuffled.GetRange(0, 6).ForEach(c => Console.WriteLine(c));
+                _pack = shuffled;
                 return true;
             }
             else if (typeOfShuffle == 2)
