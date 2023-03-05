@@ -32,6 +32,7 @@ namespace CMP1903M_A01_2223
             }
             else if (typeOfShuffle == 2)
             {
+                // Do Riffle shuffle
                 return true;
             }
             else if (typeOfShuffle == 3)
