@@ -29,7 +29,7 @@ namespace CMP1903M_A01_2223
                 }
                 else
                 {
-                    throw new Exception("Value must be between 1 and 13");
+                    throw new ArgumentOutOfRangeException("card value must be between 1 and 13");
                 }
             }
         }
@@ -47,7 +47,7 @@ namespace CMP1903M_A01_2223
                 }
                 else
                 {
-                    throw new Exception("Suit must be between 1 and 4");
+                    throw new ArgumentOutOfRangeException("card suit must be between 1 and 4");
                 }
             }
         }

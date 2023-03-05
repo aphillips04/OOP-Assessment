@@ -18,13 +18,12 @@ namespace CMP1903M_A01_2223
             {
                 for (v = 1; v <= 13; v++)
                 {
-                    Console.WriteLine(v.ToString());
                     pack.Add(new Card(v, s));
                 }
             }
         }
 
-        public static bool shuffleCardPack(int typeOfShuffle)
+        public bool shuffleCardPack(int typeOfShuffle)
         {
             if (typeOfShuffle == 1)
             {
@@ -42,17 +41,17 @@ namespace CMP1903M_A01_2223
             }
             else
             {
-                throw new Exception("Invalid shuffle type");
+                throw new InvalidOperationException("invalid shuffle type");
             }
 
         }
-        public static Card deal()
+        public Card deal()
         {
             //Deals one card
             return new Card(1, 1);
 
         }
-        public static List<Card> dealCard(int amount)
+        public List<Card> dealCard(int amount)
         {
             //Deals the number of cards specified by 'amount'
             return new List<Card>();
