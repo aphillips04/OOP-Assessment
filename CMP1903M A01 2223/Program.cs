@@ -10,10 +10,14 @@ namespace CMP1903M_A01_2223
     {
         static void Main(string[] args)
         {
-            Testing.CreatePack();
-            Testing.ShufflePack();
-            Testing.DealCardNoAmount();
-            // Testing.DealCardAmount();
+            //Testing.TestAll();
+
+            Pack pack = new Pack();
+            List<Card> cards = pack.dealCard(6);
+            foreach (Card card in cards)
+            {
+                Console.WriteLine(card);
+            }
         }
     }
 }

@@ -6,22 +6,39 @@ using System.Threading.Tasks;
 
 namespace CMP1903M_A01_2223
 {
-    class FailedTestException : Exception
-    {
-        public FailedTestException()
-        {
-        }
-        
-        public FailedTestException(string message) : base(message)
-        {
-        }
-
-        public FailedTestException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
-    }
     class Testing
     {
+        public static void CreateCard()
+        {
+            int[][] cards =
+            {
+                new int[2] { 1, 1 }, // Lower valid
+                new int[2] { 13, 4 }, // Upper valid
+                new int[2] { 0, 1 }, // Valid too low
+                new int[2] { 1, 0 }, // Suit too low
+                new int[2] { 0, 0 }, // Both too low
+                new int[2] { 14, 4 }, // Value too high
+                new int[2] { 13, 5 }, // Suit too high
+                new int[2] { 14, 5 }, // Both too high
+            };
+            foreach (int[] card in cards)
+            {
+                try
+                {
+                    new Card(card[0], card[1]);
+                    if (card[0] == 0 || card[0] == 14)
+                    {
+                        throw new FailedTestException("invalid card value allowed");
+                    } else if (card[1] == 0 || card[1] == 5)
+                    {
+                        throw new FailedTestException("invalid card suit allowed");
+                    }
+                } catch (ArgumentOutOfRangeException e)
+                {
+                    Console.WriteLine($"ArgumentOutOfRangeException: {e.ParamName}");
+                }
+            }
+        }
         public static void CreatePack()
         {
             Pack pack = new Pack();
@@ -32,7 +49,12 @@ namespace CMP1903M_A01_2223
             Pack pack = new Pack();
             for (int i = 1; i <= 3;  i++)
             {
-                Console.WriteLine(pack.shuffleCardPack(i).ToString());
+                List<Card> before = pack.pack;
+                if (pack.shuffleCardPack(i))
+                {
+
+                }
+
             }
             try
             {
@@ -40,7 +62,7 @@ namespace CMP1903M_A01_2223
                 throw new FailedTestException("invalid shuffle allowed");
             } catch (InvalidOperationException e)
             {
-                Console.WriteLine("InvalidOperationException: '" + e.Message + "'");
+                Console.WriteLine($"InvalidOperationException: '{e.Message}'");
             }
         }
 
@@ -64,7 +86,7 @@ namespace CMP1903M_A01_2223
         {
             Pack pack;
             List<Card> cards;
-            int[] amounts = { 1, 2, 5, 10, 26, 52, 60 };
+            int[] amounts = { 1, 2, 5, 10, 26, 52, -5, 0, 60 };
             foreach (int amount in amounts)
             {
                 pack = new Pack();
@@ -77,6 +99,9 @@ namespace CMP1903M_A01_2223
                     } else if (cards.Count == 0)
                     {
                         throw new FailedTestException("no cards dealt");
+                    } else if (cards.Count != amount)
+                    {
+                        throw new FailedTestException("incorrect amount of cards dealt");
                     }
                     foreach (Card card in cards)
                     {
@@ -89,13 +114,29 @@ namespace CMP1903M_A01_2223
                             throw new FailedTestException("dealt card not removed from pack");
                         }
                     }
-                    Console.WriteLine(amount.ToString() + " cards dealt successfully");
+                    Console.WriteLine($"{amount} cards dealt successfully");
                 }
                 catch (ArgumentOutOfRangeException e)
                 {
-                    Console.WriteLine("ArgumentOutOfRangeException: '" + e.Message + "'");
+                    Console.WriteLine($"ArgumentOutOfRangeException: '{e.ParamName}'");
                 }
             }
+        }
+
+        public static void TestAll()
+        {
+            // Do tests
+            CreateCard();
+            CreatePack();
+            ShufflePack();
+            DealCardNoAmount();
+            DealCardAmount();
+
+            // Output success
+            ConsoleColor previous = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("All tests passed!");
+            Console.ForegroundColor = previous;
         }
     }
 }
