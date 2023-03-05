@@ -18,6 +18,7 @@ namespace CMP1903M_A01_2223
             {
                 for (v = 1; v <= 13; v++)
                 {
+                    Console.WriteLine(v.ToString());
                     pack.Add(new Card(v, s));
                 }
             }
