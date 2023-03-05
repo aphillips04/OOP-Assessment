@@ -24,7 +24,7 @@ namespace CMP1903M_A01_2223
             {
                 for (v = 1; v <= 13; v++)
                 {
-                    _pack.Add(new Card(v, s));
+                    pack.Add(new Card(v, s));
                 }
             }
         }
@@ -39,10 +39,28 @@ namespace CMP1903M_A01_2223
             else if (typeOfShuffle == 2)
             {
                 // Do Riffle shuffle
+                List<Card> left = pack.GetRange(0, pack.Count / 2);
+                int rightCount = pack.Count - left.Count;
+                List<Card> right = pack.GetRange(pack.Count / 2, rightCount);
+                Console.WriteLine($"l={left.Count} - r={right.Count}");
+
+                List<Card> shuffled = new List<Card>();
+                int i;
+                for (i = 0; i < left.Count; i++)
+                {
+                    shuffled.Add(right[i]);
+                    shuffled.Add(left[i]);
+                }
+                if (shuffled.Count != pack.Count)
+                {
+                    shuffled.Add(right[i]);
+                }
+                _pack = shuffled;
                 return true;
             }
             else if (typeOfShuffle == 3)
             {
+                // Do no shuffle
                 return true;
             }
             else
@@ -54,20 +72,20 @@ namespace CMP1903M_A01_2223
         public Card dealCard()
         {
             //Deals one card
-            if (_pack.Count == 0)
+            if (pack.Count == 0)
             {
                 throw new EmptyPackException("pack is empty");
             }
-            Card card = _pack[0];
+            Card card = pack[0];
             Console.WriteLine(card);
-            _pack.RemoveAt(0);
+            pack.RemoveAt(0);
             return card;
 
         }
         public List<Card> dealCard(int amount)
         {
             //Deals the number of cards specified by 'amount'
-            if (_pack.Count == 0)
+            if (pack.Count == 0)
             {
                 throw new EmptyPackException("pack is empty");
             }
@@ -77,12 +95,12 @@ namespace CMP1903M_A01_2223
             } else if (amount == 0)
             {
                 throw new ArgumentOutOfRangeException("cannot deal zero cards");
-            } else if (amount > _pack.Count)
+            } else if (amount > pack.Count)
             {
                 throw new ArgumentOutOfRangeException("cannot deal more cards than in the pack");
             }
-            List<Card> cards = _pack.GetRange(0, amount);
-            _pack.RemoveRange(0, amount);
+            List<Card> cards = pack.GetRange(0, amount);
+            pack.RemoveRange(0, amount);
             return cards;
         }
     }

@@ -13,6 +13,7 @@ namespace CMP1903M_A01_2223
             //Testing.TestAll();
 
             Pack pack = new Pack();
+            pack.shuffleCardPack(2);
             List<Card> cards = pack.dealCard(6);
             foreach (Card card in cards)
             {

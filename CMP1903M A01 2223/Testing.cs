@@ -49,18 +49,32 @@ namespace CMP1903M_A01_2223
         {
             Pack pack = new Pack();
             List<Card> before;
+
+            // Even pack size
             for (int i = 1; i <= 3;  i++)
             {
                 before = pack.pack;
-                if (pack.shuffleCardPack(i))
+                pack.shuffleCardPack(i);
+                if (pack.pack != pack.pack)
                 {
-                    if (pack.pack == pack.pack)
-                    {
-                        throw new FailedTestException($"pack is the same after being shuffled. shuffle method: {i}");
-                    }
-                }
-
+                    continue;
+                };
+                throw new FailedTestException($"pack is the same after being shuffled. shuffle method: {i}");
             }
+
+            // Odd pack size
+            pack.dealCard(7);
+            for (int i = 1; i <= 3; i++)
+            {
+                before = pack.pack;
+                pack.shuffleCardPack(i);
+                if (pack.pack != pack.pack)
+                {
+                    continue;
+                };
+                throw new FailedTestException($"pack is the same after being shuffled. shuffle method: {i}");
+            }
+
             try
             {
                 pack.shuffleCardPack(4);
