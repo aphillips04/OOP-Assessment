@@ -52,7 +52,10 @@ namespace CMP1903M_A01_2223
                 List<Card> before = pack.pack;
                 if (pack.shuffleCardPack(i))
                 {
-
+                    if (pack.pack == pack.pack)
+                    {
+                        throw new FailedTestException($"pack is the same after being shuffled. shuffle method: {i}");
+                    }
                 }
 
             }
