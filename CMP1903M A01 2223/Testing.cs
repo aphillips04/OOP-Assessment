@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -97,7 +98,14 @@ namespace CMP1903M_A01_2223
                 try
                 {
                     cards = pack.dealCard(amount);
-                    if (amount == 60)
+                    if (amount == -5)
+                    {
+                        throw new FailedTestException("negative amount of cards dealt");
+                    } else if (amount == 0)
+                    {
+                        throw new FailedTestException("zero cards dealt");
+                    }
+                    else if (amount == 60)
                     {
                         throw new FailedTestException("more dealt than in the pack");
                     } else if (cards.Count == 0)
