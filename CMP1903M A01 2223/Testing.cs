@@ -9,13 +9,14 @@ namespace CMP1903M_A01_2223
 {
     class Testing
     {
-        public static void CreateCard()
+        public static void CreateCard() 
         {
+            // Define card details
             int[][] cards =
             {
                 new int[2] { 1, 1 }, // Lower valid
                 new int[2] { 13, 4 }, // Upper valid
-                new int[2] { 0, 1 }, // Valid too low
+                new int[2] { 0, 1 }, // Value too low
                 new int[2] { 1, 0 }, // Suit too low
                 new int[2] { 0, 0 }, // Both too low
                 new int[2] { 14, 4 }, // Value too high
@@ -24,6 +25,7 @@ namespace CMP1903M_A01_2223
             };
             foreach (int[] card in cards)
             {
+                // Try to create the Card object, catch expected exceptions
                 try
                 {
                     new Card(card[0], card[1]);
@@ -53,7 +55,7 @@ namespace CMP1903M_A01_2223
             // Even pack size
             for (int i = 1; i <= 3;  i++)
             {
-                before = pack.pack;
+                before = pack.pack; // Save for checking
                 if (pack.shuffleCardPack(i) != true)
                 {
                     throw new FailedTestException("incorrect return value");
@@ -73,8 +75,11 @@ namespace CMP1903M_A01_2223
             pack.dealCard(7);
             for (int i = 1; i <= 3; i++)
             {
-                before = pack.pack;
-                pack.shuffleCardPack(i);
+                before = pack.pack; // Save for checking
+                if (pack.shuffleCardPack(i) != true)
+                {
+                    throw new FailedTestException("incorrect return value");
+                }
                 if (pack.pack != before && i != 3)
                 {
                     continue;
@@ -85,7 +90,8 @@ namespace CMP1903M_A01_2223
                 }
                 throw new FailedTestException($"odd pack is the same after being shuffled. shuffle method: {i}");
             }
-
+            
+            // Try an invalid shuffle number, catch expected exception
             try
             {
                 pack.shuffleCardPack(4);
@@ -103,7 +109,7 @@ namespace CMP1903M_A01_2223
             Card dealtCard = pack.dealCard();
             if (dealtCard.GetType() != typeof(Card))
             {
-                throw new Exception("icorrect return type");
+                throw new Exception("incorrect return type");
             }
             else if (dealtCard == null)
             {
@@ -120,10 +126,15 @@ namespace CMP1903M_A01_2223
         {
             Pack pack;
             List<Card> cards;
-            int[] amounts = { 1, 2, 5, 10, 26, 52, -5, 0, 60 };
+            int[] amounts = 
+            {
+                1, 2, 5, 10, 26, 52, // Valid amounts
+                -5, 0, 60 // Invalid amounts
+            };
             foreach (int amount in amounts)
             {
-                pack = new Pack();
+                pack = new Pack(); // Create a new pack each time to allow larger test values
+                // Try deal the amount of cards, catch expected exceptions
                 try
                 {
                     cards = pack.dealCard(amount);
@@ -178,7 +189,7 @@ namespace CMP1903M_A01_2223
             DealCardAmount();
 
             // Output success
-            ConsoleColor previous = Console.ForegroundColor;
+            ConsoleColor previous = Console.ForegroundColor; // Save so we can reset the colour afterwards
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("All tests passed!");
             Console.ForegroundColor = previous;

@@ -23,6 +23,7 @@ namespace CMP1903M_A01_2223
             }
             set
             {
+                // Must be within the range Ace - King
                 if (value >= 1 && value <= 13)
                 {
                     _value = value;
@@ -41,6 +42,7 @@ namespace CMP1903M_A01_2223
             }
             set
             {
+                // Must be a valid suit
                 if (value >= 1 && value <= 4)
                 {
                     _suit = value;
@@ -60,8 +62,8 @@ namespace CMP1903M_A01_2223
 
         override public string ToString()
         {
-            string suit = (new string[] { "Spades", "Hearts", "Diamonds", "Clubs" })[Suit - 1];
-            string card = (new string[] { "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" })[Value - 1];
+            string suit = (new string[] { "Spades", "Hearts", "Diamonds", "Clubs" })[Suit - 1]; // Turn int suit into word
+            string card = (new string[] { "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" })[Value - 1]; // Turn int card into word
             return $"{card} of {suit}";
         }
     }
