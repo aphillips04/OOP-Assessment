@@ -29,18 +29,71 @@ namespace CMP1903M_A01_2223
 
         public static void ShufflePack()
         {
-            Pack deck = new Pack();
+            Pack pack = new Pack();
             for (int i = 1; i <= 3;  i++)
             {
-                Console.WriteLine(deck.shuffleCardPack(i).ToString());
+                Console.WriteLine(pack.shuffleCardPack(i).ToString());
             }
             try
             {
-                deck.shuffleCardPack(4);
+                pack.shuffleCardPack(4);
                 throw new FailedTestException("invalid shuffle allowed");
             } catch (InvalidOperationException e)
             {
                 Console.WriteLine("InvalidOperationException: '" + e.Message + "'");
+            }
+        }
+
+        public static void DealCardNoAmount()
+        {
+            // No amount specified
+            Pack pack = new Pack();
+            Card dealtCard = pack.dealCard();
+            if (dealtCard == null)
+            {
+                throw new FailedTestException("no card dealt");
+            }
+            else if (pack.pack.Contains(dealtCard))
+            {
+                throw new FailedTestException("dealt card not removed from pack");
+            }
+        }
+        
+        public static void DealCardAmount()
+        {
+            Pack pack;
+            List<Card> cards;
+            int[] amounts = { 1, 2, 5, 10, 26, 52, 60 };
+            foreach (int amount in amounts)
+            {
+                pack = new Pack();
+                try
+                {
+                    cards = pack.dealCard(amount);
+                    if (amount == 60)
+                    {
+                        throw new FailedTestException("more dealt than in the pack");
+                    } else if (cards.Count == 0)
+                    {
+                        throw new FailedTestException("no cards dealt");
+                    }
+                    foreach (Card card in cards)
+                    {
+                        if (card == null)
+                        {
+                            throw new FailedTestException("null card dealt");
+                        }
+                        else if (pack.pack.Contains(card))
+                        {
+                            throw new FailedTestException("dealt card not removed from pack");
+                        }
+                    }
+                    Console.WriteLine(amount.ToString() + " cards dealt successfully");
+                }
+                catch (ArgumentOutOfRangeException e)
+                {
+                    Console.WriteLine("ArgumentOutOfRangeException: '" + e.Message + "'");
+                }
             }
         }
     }

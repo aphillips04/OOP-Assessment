@@ -8,7 +8,7 @@ namespace CMP1903M_A01_2223
 {
     class Pack
     {
-        List<Card> pack;
+        public List<Card> pack;
 
         public Pack()
         {
@@ -45,7 +45,7 @@ namespace CMP1903M_A01_2223
             }
 
         }
-        public Card deal()
+        public Card dealCard()
         {
             //Deals one card
             return new Card(1, 1);

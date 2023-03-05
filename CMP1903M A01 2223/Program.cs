@@ -12,6 +12,8 @@ namespace CMP1903M_A01_2223
         {
             Testing.CreatePack();
             Testing.ShufflePack();
+            Testing.DealCardNoAmount();
+            Testing.DealCardAmount();
         }
     }
 }
