@@ -12,22 +12,48 @@ namespace CMP1903M_A01_2223
 
         public Pack()
         {
-            //Initialise the card pack here
+            pack = new List<Card>();
+            int v, s;
+            for (s = 1; s <= 4; s++)
+            {
+                for (v = 1; v <= 13; v++)
+                {
+                    pack.Add(new Card(v, s));
+                }
+            }
         }
 
         public static bool shuffleCardPack(int typeOfShuffle)
         {
-            //Shuffles the pack based on the type of shuffle
+            if (typeOfShuffle == 1)
+            {
+                // Do Fisher-Yates shuffle
+                return true;
+            }
+            else if (typeOfShuffle == 2)
+            {
+                return true;
+            }
+            else if (typeOfShuffle == 3)
+            {
+                return true;
+            }
+            else
+            {
+                throw new Exception("Invalid shuffle type");
+            }
 
         }
         public static Card deal()
         {
             //Deals one card
+            return new Card(1, 1);
 
         }
         public static List<Card> dealCard(int amount)
         {
             //Deals the number of cards specified by 'amount'
+            return new List<Card>();
         }
     }
 }
