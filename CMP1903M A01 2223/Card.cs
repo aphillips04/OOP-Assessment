@@ -25,7 +25,7 @@ namespace CMP1903M_A01_2223
             {
                 if (Value >= 1 && Value <= 13)
                 {
-                    _value = value;
+                    _value = Value;
                 }
                 else
                 {
@@ -43,7 +43,7 @@ namespace CMP1903M_A01_2223
             {
                 if (Suit >= 1 && Suit <= 4)
                 {
-                    _suit = value;
+                    _suit = Suit;
                 }
                 else
                 {
