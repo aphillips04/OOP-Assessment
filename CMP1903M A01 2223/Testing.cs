@@ -47,9 +47,10 @@ namespace CMP1903M_A01_2223
         public static void ShufflePack()
         {
             Pack pack = new Pack();
+            List<Card> before;
             for (int i = 1; i <= 3;  i++)
             {
-                List<Card> before = pack.pack;
+                before = pack.pack;
                 if (pack.shuffleCardPack(i))
                 {
                     if (pack.pack == pack.pack)
