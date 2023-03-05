@@ -57,5 +57,12 @@ namespace CMP1903M_A01_2223
             Value = value;
             Suit = suit;
         }
+
+        override public string ToString()
+        {
+            string suit = (new string[] { "Spades", "Hearts", "Diamonds", "Clubs" })[Suit - 1];
+            string card = (new string[] { "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" })[Value - 1];
+            return $"{card} of {suit}";
+        }
     }
 }
