@@ -54,7 +54,10 @@ namespace CMP1903M_A01_2223
             for (int i = 1; i <= 3;  i++)
             {
                 before = pack.pack;
-                pack.shuffleCardPack(i);
+                if (pack.shuffleCardPack(i) != true)
+                {
+                    throw new FailedTestException("incorrect return value");
+                }
                 if (pack.pack != before && i != 3)
                 {
                     continue;
@@ -98,7 +101,11 @@ namespace CMP1903M_A01_2223
             // No amount specified
             Pack pack = new Pack();
             Card dealtCard = pack.dealCard();
-            if (dealtCard == null)
+            if (dealtCard.GetType() != typeof(Card))
+            {
+                throw new Exception("icorrect return type");
+            }
+            else if (dealtCard == null)
             {
                 throw new FailedTestException("no card dealt");
             }
@@ -120,7 +127,11 @@ namespace CMP1903M_A01_2223
                 try
                 {
                     cards = pack.dealCard(amount);
-                    if (amount == -5)
+                    if (cards.GetType() != typeof(List<Card>))
+                    {
+                        throw new Exception("incorrect return type");
+                    }
+                    else if (amount == -5)
                     {
                         throw new FailedTestException("negative amount of cards dealt");
                     } else if (amount == 0)
