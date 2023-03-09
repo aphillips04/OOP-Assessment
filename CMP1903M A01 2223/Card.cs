@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CMP1903M_A01_2223
 {
+    /// <summary>
+    /// Class <c>Card</c> to handle cards.
+    /// </summary>
     class Card
     {
         //Base for the Card class.
@@ -54,12 +57,21 @@ namespace CMP1903M_A01_2223
             }
         }
 
+        /// <summary>
+        /// Method <c>Card</c> constructs the card.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="suit"></param>
         public Card(int value, int suit)
         {
             Value = value;
             Suit = suit;
         }
 
+        /// <summary>
+        /// Method <c>ToString</c> outputs the card as a string.
+        /// </summary>
+        /// <returns>Card in the form "Name of Suit"</returns>
         override public string ToString()
         {
             string suit = (new string[] { "Spades", "Hearts", "Diamonds", "Clubs" })[Suit - 1]; // Turn int suit into word

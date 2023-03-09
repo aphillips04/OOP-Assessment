@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace CMP1903M_A01_2223
 {
+    /// <summary>
+    /// Class <c>Pack</c> handles a pack of cards and actions performed on it.
+    /// </summary>
     class Pack
     {
-        private List<Card> _pack;
+        // Don't alloaw public pack to be changed
+        public List<Card> pack { get; private set; }
 
-        // Don't allow public pack to be changed
-        public List<Card> pack
-        {
-            get { return _pack; }
-            set {  }
-        }
-
+        /// <summary>
+        /// Method <c>Pack</c> constructs the pack in an unshuffled order.
+        /// </summary>
         public Pack()
         {
-            _pack = new List<Card>();
+            pack = new List<Card>();
             int v, s;
             // Create pack in to be pulled in ascending order, sorted by suit
             for (s = 1; s <= 4; s++)
@@ -33,6 +33,12 @@ namespace CMP1903M_A01_2223
             }
         }
 
+        /// <summary>
+        /// Method <c>shuffleCardPack</c> performs different shuffles based on which type is passed.
+        /// </summary>
+        /// <param name="typeOfShuffle"></param>
+        /// <returns>Boolean based on wheather the shuffle was a success or not</returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public bool shuffleCardPack(int typeOfShuffle)
         {
             if (typeOfShuffle == 1)
@@ -51,7 +57,7 @@ namespace CMP1903M_A01_2223
                     shuffled[i] = shuffled[j];
                     shuffled[j] = tmp;
                 }
-                _pack = shuffled; // Overwrite pack
+                pack = shuffled; // Overwrite pack
                 return true;
             }
             else if (typeOfShuffle == 2)
@@ -73,7 +79,7 @@ namespace CMP1903M_A01_2223
                 {
                     shuffled.Add(right[i]); // Don't add 1 as i++ adds after returning the value
                 }
-                _pack = shuffled; // Overwrite pack
+                pack = shuffled; // Overwrite pack
                 return true;
             }
             else if (typeOfShuffle == 3)
@@ -85,8 +91,13 @@ namespace CMP1903M_A01_2223
             {
                 throw new InvalidOperationException("invalid shuffle type");
             }
-
         }
+
+        /// <summary>
+        /// Method <c>dealCard</c> deals a single card.
+        /// </summary>
+        /// <returns>The card at the top (index 0) of the pack</returns>
+        /// <exception cref="EmptyPackException"></exception>
         public Card dealCard()
         {
             //Deals one card
@@ -100,6 +111,14 @@ namespace CMP1903M_A01_2223
             return card;
 
         }
+
+        /// <summary>
+        /// Method <c>dealCard</c> deals the amount of cards passed.
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <returns>A list of cards from the top (index 0) to the amount</returns>
+        /// <exception cref="EmptyPackException"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public List<Card> dealCard(int amount)
         {
             //Deals the number of cards specified by 'amount'

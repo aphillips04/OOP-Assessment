@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace CMP1903M_A01_2223
 {
+    /// <summary>
+    /// Class <c>Testing</c> handles all testing.
+    /// </summary>
     class Testing
     {
+        /// <summary>
+        /// Method <c>CreateCard</c> tests card creation.
+        /// </summary>
+        /// <exception cref="FailedTestException"></exception>
         public static void CreateCard() 
         {
             // Define card details
@@ -42,11 +49,19 @@ namespace CMP1903M_A01_2223
                 }
             }
         }
+        
+        /// <summary>
+        /// Method <c>CreatePack</c> tests pack creation.
+        /// </summary>
         public static void CreatePack()
         {
             Pack pack = new Pack();
         }
 
+        /// <summary>
+        /// Method <c>ShufflePack</c> test shuffling the pack.
+        /// </summary>
+        /// <exception cref="FailedTestException"></exception>
         public static void ShufflePack()
         {
             Pack pack = new Pack();
@@ -102,6 +117,11 @@ namespace CMP1903M_A01_2223
             }
         }
 
+        /// <summary>
+        /// Method <c>DealCardNoAmount</c> tests dealing cards without passing an amount.
+        /// </summary>
+        /// <exception cref="Exception"></exception>
+        /// <exception cref="FailedTestException"></exception>
         public static void DealCardNoAmount()
         {
             // No amount specified
@@ -121,7 +141,12 @@ namespace CMP1903M_A01_2223
             }
             Console.WriteLine("Card dealt successfully");
         }
-        
+
+        /// <summary>
+        /// Method <c>DealCardAmount</c> tests dealing cards when passing an amount.
+        /// </summary>
+        /// <exception cref="Exception"></exception>
+        /// <exception cref="FailedTestException"></exception>
         public static void DealCardAmount()
         {
             Pack pack;
@@ -179,6 +204,9 @@ namespace CMP1903M_A01_2223
             }
         }
 
+        /// <summary>
+        /// Method <c>TestAll</c> runs all tests and outputs a success message.
+        /// </summary>
         public static void TestAll()
         {
             // Do tests
