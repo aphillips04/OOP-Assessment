@@ -30,7 +30,9 @@ namespace CMP1903M_A02_2223
 
         public static void Tutor(int amount)
         {
-            Console.WriteLine();
+            // Amount must be odd otherwise an operation would only have a single number
+            if (amount % 2 == 0) throw new InvalidElementCountException("amount must be odd");
+
             // Pre-initalise the variables to save time
             Func<string, string, object> Compute = (new DataTable()).Compute;
             string[] ops = new string[] { "+", "-", "*", "/" };
@@ -53,7 +55,7 @@ namespace CMP1903M_A02_2223
                 answer = Round(answer, 2);
 
                 // Ask the user to provide their answer to the expression, only allowed valid answers
-                Console.Write(expr + "= ");
+                Console.Write($"\n{expr} = ");
                 while (true)
                 {
                     try { input = Convert.ToDouble(Console.ReadLine()); break; } // Signed double to allow for floating point and negatives
@@ -72,7 +74,7 @@ namespace CMP1903M_A02_2223
             }
         }
 
-        static double Round(double x, int places = 0)
+        public static double Round(double x, int places = 0)
         {
             double offset = x < 0 ? Math.Pow(10, -places) : 0;
             double answer = Math.Round(x, places, MidpointRounding.AwayFromZero);

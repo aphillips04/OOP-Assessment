@@ -11,6 +11,9 @@ namespace CMP1903M_A02_2223
     {
         static void Main(string[] args)
         {
+            bool debug = true;
+            if (debug) { Testing.TestAll(); return; }
+            
             Console.WriteLine("Welcome to the mathematics tutorial program.");
             Menu();
             Console.WriteLine("Thank you for using the mathematics tutorial program.");
@@ -38,7 +41,7 @@ namespace CMP1903M_A02_2223
                 case "4":
                     return;
                 default:
-                    Console.WriteLine("Invalid Option.");
+                    Console.WriteLine("\nInvalid Option.");
                     break;
             }
             Menu();

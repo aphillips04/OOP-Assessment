@@ -35,4 +35,19 @@ namespace CMP1903M_A02_2223
         {
         }
     }
+
+    class InvalidElementCountException : Exception
+    {
+        public InvalidElementCountException()
+        {
+        }
+
+        public InvalidElementCountException(string message) : base(message)
+        {
+        }
+
+        public InvalidElementCountException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+    }
 }
